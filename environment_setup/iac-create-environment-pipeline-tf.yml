@@ -21,12 +21,12 @@ variables:
 - group: devopsforai-aml-vg
 
 steps:
-- task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
+- task: jasonjohnson.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
   displayName: 'Use Terraform 0.12.24'
   inputs:
     terraformVersion: 0.12.24
 
-- task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
+- task: jasonjohnson.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
   displayName: 'TF init - Deploy MLOps resources to Azure'
   inputs:
     command: init
@@ -42,13 +42,13 @@ steps:
     backendAzureRmContainerName: 'tfstate-cont'
     backendAzureRmKey: 'mlopsinfra.tfstate'
 
-- task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
+- task: jasonjohnson.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
   displayName: 'TF validate - Deploy MLOps resources to Azure'
   inputs:
     command: validate
     workingDirectory: '$(Build.SourcesDirectory)/environment_setup/tf-templates'
 
-- task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
+- task: jasonjohnson.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
   displayName: 'TF plan - Deploy MLOps resources to Azure'
   inputs:
     command: plan
@@ -59,7 +59,7 @@ steps:
     TF_VAR_RESOURCE_GROUP: $(RESOURCE_GROUP)
     TF_VAR_WORKSPACE_NAME: $(WORKSPACE_NAME)
 
-- task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
+- task: jasonjohnson.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
   displayName: 'TF apply - Deploy MLOps resources to Azure'
   inputs:
     command: apply
